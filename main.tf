@@ -33,7 +33,6 @@ module "network" {
   version             = "2.0.0"
   location            = var.location
   resource_group_name = "${var.windows_dns_prefix}-rc"
-  allow_ssh_traffic   = true
 }
 
 output "windows_vm_public_name" {

@@ -2,10 +2,6 @@ terraform {
   required_version = ">= 0.12"
 }
 
-provider "azurerm" {
-  version = "=1.36.0"
-}
-
 variable "location" {
   description = "Azure location in which to create resources"
   default     = "West US"
@@ -22,7 +18,7 @@ variable "admin_password" {
 
 module "windowsservers" {
   source              = "Azure/compute/azurerm"
-  version             = "1.1.5"
+  version             = "1.3.0"
   location            = var.location
   resource_group_name = "${var.windows_dns_prefix}-rc"
   vm_hostname         = "pwc-ptfe"
@@ -34,7 +30,7 @@ module "windowsservers" {
 
 module "network" {
   source              = "Azure/network/azurerm"
-  version             = "1.1.1"
+  version             = "2.0.0"
   location            = var.location
   resource_group_name = "${var.windows_dns_prefix}-rc"
   allow_ssh_traffic   = true

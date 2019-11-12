@@ -20,7 +20,7 @@ variable "admin_password" {
   default     = "pTFE1234!"
 }
 
-module "windowsserver" {
+module "windowsservers" {
   source              = "Azure/compute/azurerm"
   version             = "1.1.5"
   location            = var.location

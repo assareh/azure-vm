@@ -135,7 +135,7 @@ resource "azurerm_virtual_machine" "myterraformvm" {
         disable_password_authentication = true
         ssh_keys {
             path     = "/home/azureuser/.ssh/authorized_keys"
-            key_data = "ssh-rsa AAAAB3Nz{snip}hwhqT9h"
+            key_data = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDOaM3FdYELWhmEx9+Ab16KVQFL2zlW06EPMogjgotLAoutW7XkgS3cgaoXuy4DhF2XndEStCHEVjJxH1pMGV3Uy7hQpVzK6rh2DPM83FwbICbO+T096ydQ3YCKIdueR7KnP5aPb9aStYJvySTIsJT9BhBunIasbT2+K5/utDEfY/WxGxqw2gZKEBgE1hZPZZqF4Ib8GsY0llIbLKylFwucZQyR1lmeIiqkv03zOpkzozFm7zLMqO9vMIvUZ3mzA573UFitXkKZmRwQjGQ0sL4ajJPFE0V7cyoJ3ojSWGJ2dDh/obO2Lf3LD9roDoAfoCKMAFXrSVMjiRcskkVbfD2GH8YnVXnqJ+kRFuVd/hjK36Ck8oa/umhJRlnYVC477JXPhHczDHiDDtW23juljblwZD9/W9zu6uusv0mlHz3HGFiqlF8jGG5m2sV8wMlUBtQWNhk3Xk6kPopbWrpbaBVTKYLLYf8NydU7Pns3cLkV1YAKclwDPiXwtNPmDi0mMoW89u6hi0TShI29Xnfb9MWW+0EP0d6MAtyOQYDPq35jfSOaL0Qm9oUvMrcqmyTmJOl2f0yGayzmi5tEzXflwXpQz2KRz9y4Vx2Or2GiwkGfUWVjQ+HoHwnSplE3FvJis/r6r+FJM+nCb684+pTZs1D/nyZnD0bEG6/jR2goO2rJdQ== assareh@hashicorp.com"
         }
     }
 

@@ -16,10 +16,6 @@ variable "admin_password" {
   default     = "pTFE1234!"
 }
 
-variable "ssh_key" {
-  description = "ssh public key"
-}
-
 module "windowsservers" {
   source              = "Azure/compute/azurerm"
   version             = "1.3.0"
@@ -30,7 +26,6 @@ module "windowsservers" {
   vm_os_simple        = "WindowsServer"
   public_ip_dns       = [var.windows_dns_prefix]
   vnet_subnet_id      = module.network.vnet_subnets[0]
-  ssh_key             = var.ssh_key
 }
 
 module "network" {

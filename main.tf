@@ -16,6 +16,15 @@ variable "admin_password" {
   default     = "pTFE1234!"
 }
 
+variable "tags" {
+  description = "descriptive tags for instances deployed"
+  default = {
+    "Name" : "Demo Windows VM",
+    "owner" : "Andy Assareh",
+    "TTL" : "1",
+  }
+}
+
 module "windowsserver" {
   source              = "Azure/compute/azurerm"
   version             = "1.3.0"
@@ -27,6 +36,7 @@ module "windowsserver" {
   is_windows_image    = "true"
   public_ip_dns       = [var.windows_dns_prefix]
   vnet_subnet_id      = module.network.vnet_subnets[0]
+  tags                = var.tags
 }
 
 module "network" {

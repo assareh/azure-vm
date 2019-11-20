@@ -21,7 +21,7 @@ variable "tags" {
   default = {
     "Name" : "Demo Windows VM",
     "owner" : "Andy Assareh",
-    "TTL" : "1",
+    "ttl" : "1",
   }
 }
 

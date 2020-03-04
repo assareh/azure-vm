@@ -2,9 +2,13 @@ terraform {
   required_version = ">= 0.12"
 }
 
+provider "azurerm" {
+  version = "~> 1.44"
+}
+
 variable "location" {
   description = "Azure location in which to create resources"
-  default     = "East US"
+  default     = "West US 2"
 }
 
 variable "windows_dns_prefix" {
@@ -31,6 +35,7 @@ module "windowsserver" {
   location            = var.location
   resource_group_name = "${var.windows_dns_prefix}-rc"
   vm_hostname         = "pwc-ptfe"
+  vm_size             = "Standard_DS1_V2"
   admin_password      = var.admin_password
   vm_os_simple        = "WindowsServer"
   is_windows_image    = "true"

@@ -2,6 +2,10 @@ terraform {
   required_version = ">= 0.12"
 }
 
+provider "azurerm" {
+  version = "~> 1.44"
+}
+
 variable "location" {
   description = "Azure location in which to create resources"
   default     = "West US 2"

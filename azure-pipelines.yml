@@ -10,10 +10,10 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: apioperations@0
+  inputs:
+    tfe_host: 'app.terraform.io'
+    tfe_token: '$(TFE_TOKEN)'
+    tfe_workspace: 'azure-devops-pipeline-test'
+    tfe_organization: 'multicloud-provisioning-demo'
+    tfe_template_path: '.'

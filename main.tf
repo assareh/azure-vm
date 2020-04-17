@@ -26,6 +26,7 @@ variable "tags" {
     "Name" : "Demo Windows VM provisioned with Terraform",
     "owner" : "Andy Assareh",
     "ttl" : "1",
+    "Description" : "This is a customer5 description",
   }
 }
 

@@ -23,7 +23,7 @@ variable "admin_password" {
 variable "tags" {
   description = "descriptive tags for instances deployed"
   default = {
-    "Name" : "Demo Windows VM provisioned with Terraform",
+    "Name" : "Demo Windows VM provisioned with Terraform!",
     "owner" : "Andy Assareh",
     "ttl" : "1",
   }

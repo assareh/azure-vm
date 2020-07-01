@@ -26,7 +26,7 @@ variable "tags" {
     "Name" : "Demo Windows VM",
     "owner" : "Andy Assareh",
     "ttl" : "1",
-    "Description" : "This is a customer7 description",
+    "Description" : "This is a customer8 description",
   }
 }
 

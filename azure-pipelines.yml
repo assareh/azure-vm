@@ -15,5 +15,5 @@ steps:
     tfe_host: 'app.terraform.io'
     tfe_token: '$(TFE_TOKEN)'
     tfe_workspace: 'azure-devops-pipeline-test'
-    tfe_organization: 'multicloud-provisioning-demo'
+    tfe_organization: 'hashidemos'
     tfe_template_path: '.'

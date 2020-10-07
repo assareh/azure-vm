@@ -1,0 +1,19 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- test
+
+pool:
+  vmImage: 'vs2017-win2016'
+
+steps:
+- task: apioperations@0
+  inputs:
+    tfe_host: 'app.terraform.io'
+    tfe_token: '$(TFE_TOKEN)'
+    tfe_workspace: 'azure-devops-pipeline-test'
+    tfe_organization: 'hashidemos'
+    tfe_template_path: '.'

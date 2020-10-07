@@ -1,28 +1,13 @@
 terraform {
-  required_version = ">= 0.12"
+  required_version = ">= 0.13"
 }
 
 provider "azurerm" {
-  version = "~> 1.44"
+  features {}
 }
 
-variable "location" {
-  description = "Azure location in which to create resources"
-  default     = "West US 2"
-}
-
-variable "windows_dns_prefix" {
-  description = "DNS prefix to add to to public IP address for Windows VM"
-}
-
-variable "admin_password" {
-  description = "admin password for Windows VM"
-  default     = "pTFE1234!"
-}
-
-variable "tags" {
-  description = "descriptive tags for instances deployed"
-  default = {
+locals {
+  common_tags = {
     "Name" : "Demo Windows VM",
     "owner" : "Andy Assareh",
     "ttl" : "1",
@@ -30,30 +15,40 @@ variable "tags" {
   }
 }
 
-module "windowsserver" {
-  source              = "Azure/compute/azurerm"
-  version             = "1.3.0"
-  location            = var.location
-  resource_group_name = "${var.windows_dns_prefix}-rc"
-  vm_hostname         = "pwc-ptfe"
+resource "azurerm_resource_group" "example" {
+  name     = "example-resources"
+  location = "West US 2"
+}
+
+module "windowsservers" {
+  source  = "Azure/compute/azurerm"
+  version = "3.7.0"
+
+  resource_group_name = azurerm_resource_group.example.name
+  is_windows_image    = true
+  vm_hostname         = "mywinvm" // line can be removed if only one VM module per resource group
   vm_size             = "Standard_DS1_V2"
-  admin_password      = var.admin_password
+  admin_password      = "ComplxP@ssw0rd!"
   vm_os_simple        = "WindowsServer"
-  is_windows_image    = "true"
-  public_ip_dns       = [var.windows_dns_prefix]
+  public_ip_dns       = ["winsimplevmips"] // change to a unique name per datacenter region
   vnet_subnet_id      = module.network.vnet_subnets[0]
-  tags                = var.tags
+
+  tags = local.common_tags
+
+  depends_on = [azurerm_resource_group.example]
 }
 
 module "network" {
-  source              = "Azure/network/azurerm"
-  version             = "1.1.1"
-  location            = var.location
-  resource_group_name = "${var.windows_dns_prefix}-rc"
-  allow_ssh_traffic   = true
+  source  = "Azure/network/azurerm"
+  version = "3.2.1"
+
+  resource_group_name = azurerm_resource_group.example.name
+  subnet_prefixes     = ["10.0.1.0/24"]
+  subnet_names        = ["subnet1"]
+
+  depends_on = [azurerm_resource_group.example]
 }
 
 output "windows_vm_public_name" {
-  value = module.windowsserver.public_ip_dns_name
+  value = module.windowsservers.public_ip_dns_name
 }
-

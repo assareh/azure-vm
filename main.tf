@@ -32,6 +32,12 @@ data "azurerm_resource_group" "example" {
   name = data.tfe_outputs.subnet.values.rg_name
 }
 
+data "azurerm_subnet" "example" {
+  name                 = data.tfe_outputs.subnet.values.subnet_name
+  virtual_network_name = data.tfe_outputs.subnet.values.vnet_name
+  resource_group_name  = data.azurerm_resource_group.example.name
+}
+
 # module "windowsservers" {
 #   source  = "Azure/compute/azurerm"
 #   version = "3.7.0"

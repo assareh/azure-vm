@@ -29,7 +29,7 @@ locals {
 }
 
 data "azurerm_resource_group" "example" {
-  name = data.tfe_outputs.subnet.rg_name
+  name = data.tfe_outputs.subnet.values.rg_name
 }
 
 # module "windowsservers" {

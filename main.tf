@@ -42,7 +42,10 @@ module "linuxservers" {
   source              = "Azure/compute/azurerm"
   resource_group_name = data.azurerm_resource_group.example.name
   vm_os_simple        = "UbuntuServer"
-  public_ip_dns       = ["linsimplevmips"] // change to a unique name per datacenter region
+  public_ip_dns       = [random_pet.server.id] // change to a unique name per datacenter region
   vnet_subnet_id      = data.azurerm_subnet.example.id
   enable_ssh_key      = false
+}
+
+resource "random_pet" "server" {
 }

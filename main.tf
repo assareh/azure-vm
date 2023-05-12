@@ -45,7 +45,7 @@ module "linuxservers" {
   public_ip_dns       = [random_pet.server.id] // change to a unique name per datacenter region
   vnet_subnet_id      = data.azurerm_subnet.example.id
   enable_ssh_key      = false
-  adminPassword       = random_password.password.result
+  admin_password      = random_password.password.result
 }
 
 resource "random_pet" "server" {

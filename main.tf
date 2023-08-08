@@ -7,7 +7,12 @@ variable "tfc_subnet_workspace" {
 }
 
 terraform {
-  required_version = ">= 0.13"
+  required_providers {
+    azurerm = {
+      source = "hashicorp/azurerm"
+      version = "3.65.0"
+    }
+  }
 }
 
 data "tfe_outputs" "subnet" {

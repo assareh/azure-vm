@@ -63,7 +63,7 @@ resource "random_password" "password" {
 
 data "azurerm_virtual_machine" "example" {
   name                = module.linuxservers.vm_names["linux"][0]
-  resource_group_name = azurerm_resource_group.example.name
+  resource_group_name = data.azurerm_resource_group.example.name
 }
  
 check "check_vm_state" {

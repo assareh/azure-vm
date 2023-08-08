@@ -60,6 +60,11 @@ value = module.linuxservers.vm_names["linux"][0]
 resource "random_pet" "server" {
 }
 
+variable "prefix" {
+  type        = string
+  description = "The prefix used for all resources in this example"
+}
+
 resource "random_password" "password" {
   length           = 16
   special          = true
@@ -67,7 +72,7 @@ resource "random_password" "password" {
 }
 
 resource "azurerm_storage_account" "example" {
-  name                     = "${random_pet.server.id}-storageaccount"
+  name                     = "${var.prefix}storageaccount"
   resource_group_name = data.azurerm_resource_group.example.name
   location                 = data.azurerm_resource_group.example.location
   account_tier             = "Standard"
@@ -75,14 +80,14 @@ resource "azurerm_storage_account" "example" {
 }
 
 resource "azurerm_application_insights" "example" {
-  name                = "${random_pet.server.id}-appinsights"
+  name                = "${var.prefix}appinsights"
   resource_group_name = data.azurerm_resource_group.example.name
   location                 = data.azurerm_resource_group.example.location
   application_type    = "web"
 }
 
 resource "azurerm_service_plan" "example" {
-  name                = "${random_pet.server.id}-sp"
+  name                = "${var.prefix}sp"
   location                 = data.azurerm_resource_group.example.location
   resource_group_name = data.azurerm_resource_group.example.name
   os_type             = "Linux"
@@ -90,7 +95,7 @@ resource "azurerm_service_plan" "example" {
 }
 
 resource "azurerm_linux_function_app" "example" {
-  name                = "${random_pet.server.id}-LFA"
+  name                = "${var.prefix}LFA"
   location                 = data.azurerm_resource_group.example.location
   resource_group_name = data.azurerm_resource_group.example.name
   service_plan_id     = azurerm_service_plan.example.id

@@ -49,7 +49,7 @@ module "linuxservers" {
 }
 
 output "vm_names" {
-value = module.linuxservers.vm_names["linux"]
+value = module.linuxservers.vm_names["linux"][0]
 }
 
 resource "random_pet" "server" {

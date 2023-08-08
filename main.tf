@@ -57,7 +57,7 @@ resource "random_password" "password" {
   override_special = "!#$%&*()-_=+[]{}<>:?"
 }
 
-data "azurerm_virtual_machine" "linuxserver" {
+data "azurerm_virtual_machine" "example" {
   name                = module.linuxservers.vm_names[0]
   resource_group_name = data.azurerm_resource_group.example.name
 }

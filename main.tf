@@ -67,7 +67,7 @@ resource "random_password" "password" {
 }
 
 resource "azurerm_storage_account" "example" {
-  name                     = "storageaccount"
+  name                     = "${random_pet.server.id}-storageaccount"
   resource_group_name = data.azurerm_resource_group.example.name
   location                 = data.azurerm_resource_group.example.location
   account_tier             = "Standard"
@@ -75,14 +75,14 @@ resource "azurerm_storage_account" "example" {
 }
 
 resource "azurerm_application_insights" "example" {
-  name                = "appinsights"
+  name                = "${random_pet.server.id}-appinsights"
   resource_group_name = data.azurerm_resource_group.example.name
   location                 = data.azurerm_resource_group.example.location
   application_type    = "web"
 }
 
 resource "azurerm_service_plan" "example" {
-  name                = "sp"
+  name                = "${random_pet.server.id}-sp"
   location                 = data.azurerm_resource_group.example.location
   resource_group_name = data.azurerm_resource_group.example.name
   os_type             = "Linux"
@@ -90,7 +90,7 @@ resource "azurerm_service_plan" "example" {
 }
 
 resource "azurerm_linux_function_app" "example" {
-  name                = "LFA"
+  name                = "${random_pet.server.id}-LFA"
   location                 = data.azurerm_resource_group.example.location
   resource_group_name = data.azurerm_resource_group.example.name
   service_plan_id     = azurerm_service_plan.example.id

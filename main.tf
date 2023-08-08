@@ -113,7 +113,7 @@ data "azurerm_linux_function_app" "example" {
   resource_group_name = azurerm_linux_function_app.example.resource_group_name
 }
 
-check "check_vm_state" {
+check "check_lfa_usage" {
   assert {
     condition = data.azurerm_linux_function_app.example.usage == "Exceeded"
     error_message = format("Function App (%s) usage has been exceeded!",
